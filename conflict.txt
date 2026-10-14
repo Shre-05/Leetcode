@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 learning git is good
 
 new lines are added here
 one more is added
+=======
+HEllo this is new conflict file
+something new is getting added again
+>>>>>>> new
 
