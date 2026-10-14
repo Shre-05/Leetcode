@@ -1,4 +1,0 @@
-Hello this is 3rd filr
-
-Hello here we are checkking wh code rebase
-here we are adding changesin the main file
