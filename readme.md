@@ -18,23 +18,12 @@ so
 ```text
 Leetcode/
 ├── DSA/
-│   ├── Arrays/
-│   ├── Strings/
-│   ├── LinkedList/
-│   ├── TwoPointers/
-│   ├── SlidingWindow/
-│   ├── SortingAndSearching/
-│   ├── Stack/
-│   ├── Queue/
-│   ├── Hashing/
-│   ├── Trees/
-│   ├── Heaps/
-│   └── Graphs/
+│   ├── DSAT/       # DSA theory and concept notes
+│   └── files/      # DSA coding problems and solutions
+│
 ├── SQL/
-│   ├── Basic/
-│   ├── Joins/
-│   ├── Aggregation/
-│   └── Advanced/
+│   └── files/      # SQL practice questions and solutions
+│
 └── README.md
 ```
 
