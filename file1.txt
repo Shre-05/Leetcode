@@ -1,2 +1,5 @@
+Hello 
 Hello this is 1st commit
 
+newthings are added here
+again something is added
