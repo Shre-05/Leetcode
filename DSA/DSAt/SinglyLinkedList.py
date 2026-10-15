@@ -19,7 +19,7 @@ while(current!=None):
     print(current.info,end=" -> ")
     current=current.next
 print(None)
-'''# Array=Conagious memory allocation
+# Array=Conagious memory allocation
 # non contaguious memory allocation and dynamic size allocation/inc/dc in size=LinkedList
 
 # Singly LinkedList:
@@ -97,4 +97,4 @@ s.insertAtEnd(20)
 s.insertAtBeginning(5)
 s.insertAtMiddle(30,10)
 s.remove(5)
-s.printLL()'''
+s.printLL()
