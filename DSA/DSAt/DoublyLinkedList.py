@@ -1,102 +1,122 @@
 
 class Node:
-    # a structure for creating a node
     def __init__(self, value=None):
-        # self is a pointer which stores the address of an object
         self.value = value
-        self.prev = None
         self.next = None
+        self.prev = None
 
 
-class Dll:
-    # initializing the head
+class DLL:
     def __init__(self, head=None):
         self.head = head
 
-    # insert at end:
+    # Insert at end
     def iae(self, value):
         temp = Node(value)
         t = self.head
 
-        if self.head != None:  # if head is not empty
+        if self.head == None:
+            self.head = temp
+            return
+        else:
             while t.next != None:
                 t = t.next
+
             t.next = temp
             temp.prev = t
             return
 
-        self.head = temp  # if head is empty
-
-    # insert at the beginning
+    # Insert at beginning
     def iab(self, value):
         temp = Node(value)
-        temp.next = self.head
 
-        if self.head != None:
+        if self.head == None:
+            self.head = temp
+            return
+        else:
+            temp.next = self.head
             self.head.prev = temp
+            self.head = temp
+            return
 
-        self.head = temp
-
-    # insert the value at the middle (after x)
+    # Insert in the middle (after x)
     def iam(self, value, x):
         temp = Node(value)
-        t = self.head
 
-        while t != None:
-            if t.value == x:
-                temp.next = t.next
+        if self.head == None:
+            self.head = temp
+            return
+        else:
+            t = self.head
 
-                if t.next != None:
-                    t.next.prev = temp
+            while t != None:  # NEW: also checks the last node
+                if t.value == x:
+                    temp.next = t.next
+                    temp.prev = t
 
-                t.next = temp
-                temp.prev = t
-                return
+                    # NEW: update next node's prev only if it exists
+                    if t.next != None:
+                        t.next.prev = temp
 
-            t = t.next
+                    t.next = temp
+                    return
 
-    # to remove an element
+                t = t.next
+
+    # Remove an element
     def remove(self, value):
-        t = self.head
-
-        if t == None:
+        if self.head == None:
             return
 
-        # found at first
-        if t.value == value:
-            self.head = t.next
+        else:
+            t = self.head
 
-            if t.next != None:
-                t.next.prev = None
-
-            return
-
-        # found at middle or last
-        while t != None:
+            # If value is present at the beginning
             if t.value == value:
-                t.prev.next = t.next
+                self.head = t.next
 
-                if t.next != None:
-                    t.next.prev = t.prev
+                # NEW: handle deleting the only node
+                # and avoid accessing None.prev
+                if self.head != None:
+                    self.head.prev = None  # NEW
 
                 return
 
-            t = t.next
+            # Element present somewhere after the head
+            while t.next != None:
+                if t.value == value:
+                    t.prev.next = t.next
+                    t.next.prev = t.prev
+                    return
 
-    # printing the linked list
+                t = t.next
+
+            # If element is present at the last
+            if t.value == value:
+                t.prev.next = None
+                return
+
+    # Print linked list
     def printLL(self):
         t = self.head
 
-        while t != None:
-            print(t.value)
+        # NEW: handle an empty list
+        if t == None:
+            print("Empty list")
+            return
+
+        while t.next != None:
+            print(t.value, end="->")
             t = t.next
 
+        print(t.value)
 
-d = Dll()
+
+# Testing
+d = DLL()
 d.iae(10)
 d.iae(20)
-d.iae(30)
 d.iab(5)
 d.iam(50, 10)
-d.remove(30)
+d.remove(20)
 d.printLL()
