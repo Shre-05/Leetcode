@@ -58,6 +58,8 @@ node4.next=node2
 
 head=node1
 
+# time complexity=O(n)
+# Space complexity=O(1)
 class Solution:
     def hasCycle(self,head):
         slow=head

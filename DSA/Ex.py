@@ -1,68 +1,90 @@
 class Node:
-    def __init__(self,info,next=None):
-        self.info=info
+    def __init__(self,val,next=None):
+        self.val=val
         self.next=next
-class SLL:
+class MyLinkedList:
+
     def __init__(self,head=None):
         self.head=head
-    # to inser an element at end
-    def iae(self,value):
-        temp=Node(value)
-        if(self.head!=None):
+
+    def get(self, index: int) -> int:
+        t=self.head
+        i=0
+        if(self.head==None):
+            return 
+        if(index==0):
+            return t.val
+        while(t!=None):
+            if(i==index):
+                return t.val
+                return
+            else:
+                i=i+1
+                t=t.next
+        return -1
+
+    def addAtHead(self, val: int) -> None:
+        temp=Node(val)
+        if(self.head==None):
+            self.head=temp
+            return
+        else:
+            t=self.head
+            temp.next=self.head
+            self.head=temp
+            return
+
+    def addAtTail(self, val: int) -> None:
+        temp=Node(val)
+        if(self.head==None):
+            self.head=temp
+            return
+        else:
             t=self.head
             while(t.next!=None):
                 t=t.next
             t.next=temp
-        else:
-            self.head=temp
+            return
 
-    def iab(self,value):
-        temp=Node(value)
-        if(self.head!=None):
-            temp.next=self.head
-            self.head=temp
-        self.head=temp
-    
-    def iam(self,value,x):
-        temp=Node(value)
+    def addAtIndex(self, index: int, val: int) -> None:
+        if(index<0):
+            return
+        temp=Node(val)
         t=self.head
-        while(t.next!=None):
-            if(t.info==x):
-                temp.next=t.next
-                t.next=temp
+        i=0
+        prev=self.head
+        if index == 0:
+            self.addAtHead(val)
+            return
+        while(t!=None):
+            if(i==index):
+                temp.next=t
+                prev.next=temp
                 return
+            prev=t
+            i=i+1
             t=t.next
+        if(i==index):
+            self.addAtTail(val)
+            return
 
-    def remove(self,value):
-            t=self.head
-            prev=self.head
-            # element found at first location
-            if(t.info==value):
-                self.head=t.next
-            # somewere in mid
-            while(t.next!=None):
-                if(t.info==value):
-                    prev.next=t.next
-                    return
-                prev=t
-                t=t.next
-            # at end
-            if(t.info==value):
-                prev.next=None
-
-    def printLL(self):
+    def deleteAtIndex(self, index: int) -> None:
         t=self.head
+        prev=t
+        i=0
+        
+        if(self.head==None):
+            return 
+        if index == 0:
+            self.head = self.head.next
+            return
         while(t.next!=None):
-            print(t.info)
+            if(i==index):
+                prev.next=t.next
+                return
+            i=i+1
+            prev=t
             t=t.next
-        print(t.info)
-
-
-
-obj=SLL()
-obj.iae(10)
-obj.iae(20)
-obj.iab(5)
-obj.iam(30,10)
-obj.remove(5)
-obj.printLL()
+        if(i==index):
+            prev.next=None
+            return
