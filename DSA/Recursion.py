@@ -41,7 +41,7 @@ class Ex:
             return s
         else:
             return self.rev_string(s[1:])+s[0]
-        
+          
 a=Ex()
 a.print_asc(1,5)
 a.print_desc(1,5)
