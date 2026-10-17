@@ -1,5 +1,5 @@
 # FIFO data structure
-"""class Queue:
+class Queue:
     def __init__(self):
         self.s=[]
     # to chcek lenegth of a queue:/tp check if empty
@@ -27,8 +27,8 @@ q.insert(30)
 q.delete()
 q.print()
 
-"""
-"""class Deque:
+
+class Deque:
     def __init__(self):
         self.s=[]
     # to chcek if the queue is empty:
@@ -67,7 +67,7 @@ d.remove_from_front()
 d.remove_from_rear()
 d.print()
 
-"""
+
 class CQ:
     def __init__(self,size):
         self.size=size
