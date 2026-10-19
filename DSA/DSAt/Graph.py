@@ -98,3 +98,80 @@ obj.add_edge(0,1)
 obj.add_edge(1,2)
 obj.add_edge(0,3)
 obj.print_graph()
+
+# Gaph transversal methods:
+class DFS:
+    def __init__(self,vertex):
+        self.mat=[[0]*vertex for x in range(vertex)]
+        self.size=vertex
+    # add the edges:
+    def add_edge(self,src,dest):
+        if(0<=src<self.size and 0<=dest<self.size):
+            self.mat[src][dest]=1
+            self.mat[dest][src]=1
+        else:
+            print("Invalid edge!")
+
+    # dfs logic:
+    def dfs(self,src):
+        visited=[False]*self.size #an array to store if the vertex is visited or not
+        stack=[src] #a stack which stores the vertexes
+
+        while(stack): #while stack is not empty
+            v=stack.pop()
+            if(visited[v]==False): #if the node is not visited
+                print(v,end="->")
+                visited[v]=True #make it as visited
+            
+            for i in range(self.size):
+                if(self.mat[v][i]==1 and visited[i]==False): #if the edges are connected but node i is not visited
+                    stack.append(i)
+
+d=DFS(6)
+d.add_edge(0,1)
+d.add_edge(0,2)
+d.add_edge(2,3)
+d.add_edge(2,4)
+d.add_edge(3,5)
+d.add_edge(4,5)
+d.dfs(0)
+
+print("")
+from collections import deque
+class BFS:
+    def __init__(self,vertex):
+        self.mat=[[0]*vertex for i in range(vertex)]
+        self.size=vertex
+
+    def add_edge(self,src,dest):
+        if(0<=src<self.size and 0<=dest<self.size):
+            self.mat[src][dest]=1
+            self.mat[dest][src]=1
+        else:
+            print("Invalid edge!")
+    def bfs(self,src):
+        visited=[False]*self.size
+        queue=deque([src])
+        visited[src]=True
+
+        while(queue):
+            v=queue.popleft()
+            print(v,end="->")
+
+            for i in range(self.size):
+                if(self.mat[v][i]==1 and visited[i]==False):
+                    visited[i]=True
+                    queue.append(i)
+
+b=BFS(8)
+b.add_edge(0,1)
+b.add_edge(0,3)
+b.add_edge(1,3)
+b.add_edge(3,5)
+b.add_edge(3,4)
+b.add_edge(5,4)
+b.add_edge(4,6)
+b.add_edge(6,2)
+b.add_edge(6,7)
+
+b.bfs(0)
