@@ -5,7 +5,7 @@ class Node:
         self.next = None
         self.prev = None
 
-
+    
 class DLL:
     def __init__(self, head=None):
         self.head = head
