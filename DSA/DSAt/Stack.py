@@ -155,57 +155,57 @@ print(a.isEmpty())
 print(a.peek())
 a.printstack()
 """
-# implementation using linkedlist:
+
+# Implementation using LinkedList:
 class Node:
-    def __init__(self,info):
-        self.info=info
-        self.next=next
-class stack:
+    def __init__(self, info):
+        self.info = info
+        self.next = None
+
+
+class Stack:
     def __init__(self):
-        self.top=-1
-        self.count=0
-    # push
-    def push(self,value):
-        temp=Node(value)
-        temp.next=self.top
-        self.top=temp
-        self.count+=1
-        return
-    # pop
+        self.top = None
+        self.count = 0
+
+    # Push
+    def push(self, value):
+        temp = Node(value)
+        temp.next = self.top
+        self.top = temp
+        self.count += 1
+
+    # Pop
     def pop(self):
-        if(self.top==-1):
-            return "empty"
-        else:
-            temp=self.top
-            val=temp.info
-            self.top=self.top.next
-            del temp
-            self.count-=1
-            return val
-    # peek
-    def peek(self):
-        if(self.top==-1):
+        if self.top is None:
             return "Empty"
-        else:
-            val=self.top.info
-            return val
-    # isEmpty
+
+        temp = self.top
+        val = temp.info
+        self.top = self.top.next
+        self.count -= 1
+        return val
+
+    # Peek
+    def peek(self):
+        if self.top is None:
+            return "Empty"
+        return self.top.info
+
+    # Check if empty
     def isEmpty(self):
-        return self.top==-1
-    # size
+        return self.top is None
+
+    # Size
     def size(self):
         return self.count
-    
-    
 
-    
-a=stack()
+
+a = Stack()
 a.push(5)
 a.push(4)
-print(a.size())
-print(a.pop())
-print(a.peek())
-a.pop()
-a.pop()
-print(a.isEmpty())
-print(a.size())
+
+print(a.size())    # 2
+print(a.pop())     # 4
+print(a.peek())    # 5
+print(a.size())    # 1
