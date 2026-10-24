@@ -1,4 +1,7 @@
-"""# Implementation using basic
+"""Last in first out
+push and pop from one end"""
+
+# Implementation using basic
 
 class Stack:
     def __init__(self):
@@ -83,12 +86,12 @@ s.push(40)
 print(s.length())
 print(s.peek())
 s.printStack()
-print(s.pop())"""
+print(s.pop())
 
 # implementation using an array:
 
 # Stack implementation using an array
-"""class Stack:
+class Stack:
     def __init__(self, cap):
         self.arr = [0] * cap
         self.cap = cap
@@ -154,7 +157,7 @@ print(a.isEmpty())
 
 print(a.peek())
 a.printstack()
-"""
+
 
 # Implementation using LinkedList:
 class Node:

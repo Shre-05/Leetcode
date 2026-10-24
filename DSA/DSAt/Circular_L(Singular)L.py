@@ -1,3 +1,4 @@
+"""the last node next address is self.head itself"""
 class Node:
     def __init__(self,value,next=None):
         self.value=value

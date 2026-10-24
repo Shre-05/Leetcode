@@ -1,3 +1,6 @@
+"""A linked list is a type of linear data structure individual items are not necessarily at contiguous locations. 
+The individual items are called nodes and connected with each other using links."""
+
 # Creation of a 4 node linkedList
 class Node:
     def __init__(self,info,next=None):
@@ -62,7 +65,7 @@ class singlyLinkedList:
                 t=t.next
             t.next=temp #if address equals none, then add the temp address there
         else:
-            self.head=temp #is no ll was present then mark temp as head
+            self.head=temp #if no ll was present then mark temp as head
             
     # Remove an element
     def remove(self,value):

@@ -1,3 +1,5 @@
+"""Doubly Linked List (DLL) is a special type of linked list in which each node contains a pointer to the previous node as well as the next node of the linked list. 
+In a Doubly Linked List, we can traverse in forward and backward direction using the next and previous pointer respectively."""
 
 class Node:
     def __init__(self, value=None):

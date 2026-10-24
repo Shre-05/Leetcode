@@ -1,4 +1,5 @@
-
+"""last node next=self.head
+self.head.prev=last node"""
 class Node:
     def __init__(self, value=None):
         self.value = value

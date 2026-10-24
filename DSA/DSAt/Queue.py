@@ -1,4 +1,5 @@
 # FIFO data structure
+# singly- enque-rear, deque-front
 class Queue:
     def __init__(self):
         self.s=[]

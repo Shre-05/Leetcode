@@ -1,4 +1,10 @@
-'''# Using python array module: 
+"""An array is a collection of items of the same variable type that are stored at contiguous memory locations. It is one of the most popular and simple data structures used in programming.
+
+Basic terminologies of Array
+Array Element: Elements are items stored in an array.
+Array Index: Elements are accessed by their indexes. Indexes in most of the programming languages start from 0. """
+
+# Using python array module: 
 # Import the python array module
 from array import *
 # from array module create an array named arr
@@ -106,7 +112,7 @@ print(" ")
 try:
     arr.index(1000)
 except:
-    print("Element is not present!")'''
+    print("Element is not present!")
 
 # Using numpy module
 from numpy import *
