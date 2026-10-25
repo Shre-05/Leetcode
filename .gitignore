@@ -3,6 +3,7 @@ venv/
 .venv/
 **/venv/
 **/.venv/
+DSAt.pdf
 
 # Python generated files
 __pycache__/
