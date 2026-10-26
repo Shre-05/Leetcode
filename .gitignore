@@ -3,12 +3,18 @@ venv/
 .venv/
 **/venv/
 **/.venv/
-DSAt.pdf
 
 # Python generated files
 __pycache__/
 *.py[cod]
 
-# Secrets
+# Secrets and environment variables
 .env
+.env.*
+
+# Local editor settings
+.vscode/
+
+# Personal or local files
+DSAt.pdf
 Ex.py
