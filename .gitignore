@@ -8,13 +8,12 @@ venv/
 __pycache__/
 *.py[cod]
 
-# Secrets and environment variables
-.env
-.env.*
-
 # Local editor settings
 .vscode/
 
-# Personal or local files
+# Environment variables and secrets
+.env
+.env.*
+
+# Personal files
 DSAt.pdf
-Ex.py
