@@ -1,22 +1,39 @@
-class n{
-    public static void main(String[]args){
-    int nums[] = {2,7,11,15};
-    int target=9;
-    int arr[]=new int[2];
+/*
+n.
+Solved
+Easy
+Topics
+premium lock icon
+Companies
+Hint
+Write a function that reverses a string. The input string is given as an array of characters s.
 
-    for(int i=0;i<nums.length;i++){
-        for(int j=0;j<nums.length;j++){
-            if(nums[i]+nums[j]==target){
-                arr[0]=i;
-                arr[1]=j;
-            }
+You must do this by modifying the input array in-place with O(1) extra memory.
+
+ 
+
+Example 1:
+
+Input: s = ["h","e","l","l","o"]
+Output: ["o","l","l","e","h"]
+Example 2:
+
+Input: s = ["H","a","n","n","a","h"]
+Output: ["h","a","n","n","a","H"]
+ 
+
+Constraints:
+
+1 <= s.length <= 105
+s[i] is a printable ascii character. */
+
+class Solution {
+    public void reverseString(char[] s) {
+        int l=s.length;
+        for(int i=0;i<l/2;i++){
+            char temp=s[i];
+            s[i]=s[l-i-1];
+            s[l-i-1]=temp;
         }
     }
-    for(int k=0;k<arr.length;k++){
-        System.out.println(arr[k]);
-    }}
-
 }
-
-
-
