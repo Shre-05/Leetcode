@@ -35,7 +35,64 @@ board[i][j] is a digit or '.'.
 It is guaranteed that the input board has only one solution. */
 
 
-class Solution {
+import java.util.*;
+
+public class SudokuSolver {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        char[][] board = new char[9][9];
+
+        System.out.println("Enter Sudoku (9 rows, use . for empty cells):");
+
+        // Taking input
+        for (int i = 0; i < 9; i++) {
+            String row = sc.next();
+
+            for (int j = 0; j < 9; j++) {
+                board[i][j] = row.charAt(j);
+            }
+        }
+
+        Sudoku solver = new Sudoku();
+
+        // Display original Sudoku
+        System.out.println("\nOriginal Sudoku:");
+        printBoard(board);
+
+        // Solve Sudoku
+        solver.solveSudoku(board);
+
+        // Display solved Sudoku
+        System.out.println("\nSolved Sudoku:");
+        printBoard(board);
+
+        sc.close();
+    }
+
+    // Display Sudoku
+    static void printBoard(char[][] board) {
+        for (int i = 0; i < 9; i++) {
+            if (i % 3 == 0 && i != 0) {
+                System.out.println("---------------------");
+            }
+
+            for (int j = 0; j < 9; j++) {
+                if (j % 3 == 0 && j != 0) {
+                    System.out.print("| ");
+                }
+
+                System.out.print(board[i][j] + " ");
+            }
+
+            System.out.println();
+        }
+    }
+}
+
+class Sudoku {
+
     public void solveSudoku(char[][] board) {
         solve(board);
     }
@@ -43,7 +100,6 @@ class Solution {
     private boolean solve(char[][] board) {
         int[] emptyCell = new int[2];
 
-        // Base condition: no empty cell exists
         if (!isEmpty(board, emptyCell)) {
             return true;
         }
@@ -57,12 +113,10 @@ class Solution {
             if (isSafe(board, row, col, charVal)) {
                 board[row][col] = charVal;
 
-                // Solve the remaining cells recursively
                 if (solve(board)) {
                     return true;
                 }
 
-                // Backtrack
                 board[row][col] = '.';
             }
         }
@@ -70,7 +124,6 @@ class Solution {
         return false;
     }
 
-    // Check whether placing a value is safe
     private boolean isSafe(char[][] board, int row, int col, char charValue) {
 
         // Check row
@@ -87,13 +140,13 @@ class Solution {
             }
         }
 
-        // Find starting index of 3x3 grid
+        // Check 3x3 grid
         int rowIndex = row - row % 3;
         int colIndex = col - col % 3;
 
-        // Check 3x3 grid
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
+
                 int actualRow = rowIndex + i;
                 int actualCol = colIndex + j;
 
@@ -106,7 +159,6 @@ class Solution {
         return true;
     }
 
-    // Find an empty cell
     private boolean isEmpty(char[][] board, int[] emptyCell) {
 
         for (int i = 0; i < 9; i++) {
