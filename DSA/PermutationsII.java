@@ -34,7 +34,7 @@ class Solution {
         return ans;
     }
     public List<List<Integer>> per(int arr[],int index,List<List<Integer>> ans){
-        // base consition
+        // base condition
         if(index==arr.length){
             ArrayList<Integer>Curr=new ArrayList<>();
             for(int nums:arr){
