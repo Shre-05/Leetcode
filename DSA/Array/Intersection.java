@@ -43,6 +43,8 @@ class BruteIntersection{
         }   
     }
 }
+// tc-O(n1+n2)
+// sc-O(1)
 class optimalIntersection{
     public void Intersection(int arr1[],int arr2[]){
         int i=0;
