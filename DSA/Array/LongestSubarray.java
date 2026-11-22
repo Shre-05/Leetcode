@@ -49,6 +49,10 @@ class LongestSubarraySolution {
                     // Update len if the current subarray is longer
                     len = Math.max(len, j - i + 1);
                 }
+                // if all are +ve
+                // if(sum>x){
+                //     break;
+                // }
             }
         }
 
