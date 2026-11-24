@@ -122,7 +122,7 @@ class MajorityElementSolution {
     - TC improves from O(N^2) to O(N).
 
     Limitation:
-    - We use additional memory to store frequencies.
+0    - We use additional memory to store frequencies.
     - The HashMap can take O(N) space in the worst case.
 
     Why is the next approach better?

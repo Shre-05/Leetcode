@@ -1,68 +1,153 @@
 /*
 121. Best Time to Buy and Sell Stock
-Solved
-Easy
-Topics
-premium lock icon
-Companies
-You are given an array prices where prices[i] is the price of a given stock on the ith day.
 
-You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+Problem:
+Given an array prices where prices[i] represents the stock price
+on the ith day, we need to choose:
+    1. One day to buy the stock.
+    2. A different day in the future to sell the stock.
 
-Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+Return the maximum profit possible.
+If no profit is possible, return 0.
 
- 
+Constraint:
+We must buy before selling.
+Only one transaction is allowed.
+*/
 
-Example 1:
-
-Input: prices = [7,1,5,3,6,4]
-Output: 5
-Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
-Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
-Example 2:
-
-Input: prices = [7,6,4,3,1]
-Output: 0
-Explanation: In this case, no transactions are done and the max profit = 0.
- 
-
-Constraints:
-
-1 <= prices.length <= 105
-0 <= prices[i] <= 104 */
 class BestTimetoBuyandSellStock {
     public static void main(String[] args) {
-        int[] arr={7,1,5,2,3,6,4};
-        BestTimetoBuyAndSellStocksSolution b=new BestTimetoBuyAndSellStocksSolution();
+        int[] arr = {7, 1, 5, 2, 3, 6, 4};
+
+        BestTimetoBuyAndSellStocksSolution b =
+                new BestTimetoBuyAndSellStocksSolution();
+
         b.Brute(arr);
         System.out.println(b.optimal(arr));
-
     }
 }
-class BestTimetoBuyAndSellStocksSolution{
 
-    public void Brute(int[]arr){
-        int profit=0;
-        for(int i=0;i<arr.length;i++){
-            int buy=arr[i];
-            for(int j=i+1;j<arr.length;j++){
-                int sell=arr[j];
+class BestTimetoBuyAndSellStocksSolution {
 
-                int cost=sell-buy;
-                profit=Math.max(cost,profit);
+    /*
+    APPROACH 1: BRUTE FORCE
+
+    Intuition:
+    Consider every possible buying day.
+    For each buying day, consider every possible selling day
+    that comes after it.
+
+    Calculate the profit for every valid buy-sell pair
+    and maintain the maximum profit encountered.
+
+    TC: O(N^2)
+        - Outer loop considers every possible buying day.
+        - Inner loop considers every possible selling day
+          after the buying day.
+        - Therefore, we examine approximately N*N pairs.
+
+    SC: O(1)
+        - We use only a few variables.
+        - No additional data structure is used.
+
+    Why this approach works:
+        - Every possible valid transaction is considered.
+        - We never sell before buying because j starts at i+1.
+        - Initializing profit to 0 ensures that if no profitable
+          transaction exists, we return 0.
+    */
+
+    public void Brute(int[] arr) {
+        int profit = 0;
+
+        // i represents the buying day
+        for (int i = 0; i < arr.length; i++) {
+
+            int buy = arr[i];
+
+            // j represents the selling day
+            // Selling must happen after buying
+            for (int j = i + 1; j < arr.length; j++) {
+
+                int sell = arr[j];
+
+                // Calculate profit for this transaction
+                int cost = sell - buy;
+
+                // Maintain the maximum profit
+                profit = Math.max(cost, profit);
             }
         }
+
         System.out.println(profit);
     }
-    public int optimal(int []prices){
-        int mini=Integer.MAX_VALUE;
-        int profit=0;
 
-        for(int i=0;i<prices.length;i++){
-            int cost=prices[i]-mini;
-            profit=Math.max(cost,profit);
-            mini=Math.min(mini,prices[i]);
+
+    /*
+    APPROACH 2: OPTIMAL (GREEDY / SINGLE PASS)
+
+    Intuition:
+    Instead of checking every possible buying-selling pair,
+    maintain the minimum stock price encountered so far.
+
+    At every day:
+        1. Assume we sell the stock today.
+        2. Calculate profit using the minimum price encountered
+           before or up to this point.
+        3. Update the maximum profit.
+        4. Update the minimum price for future transactions.
+
+    TC: O(N)
+        - We traverse the array only once.
+        - Each iteration performs constant-time operations.
+
+    SC: O(1)
+        - We maintain only two variables:
+              mini   -> minimum price encountered so far
+              profit -> maximum profit encountered so far
+
+    WHY IS THIS BETTER THAN BRUTE FORCE?
+
+        Brute force checks every possible buying-selling pair,
+        resulting in O(N^2) time.
+
+        But we don't need to repeatedly check all buying prices.
+
+        For any selling day, the best possible buying day
+        before it is simply the day with the minimum price
+        encountered so far.
+
+        By maintaining this minimum while traversing the array,
+        we eliminate the nested loop and reduce the time
+        complexity from O(N^2) to O(N).
+
+    This is the optimal solution because:
+        - O(N) time is necessary to process the input.
+        - O(1) auxiliary space is achieved.
+    */
+
+    public int optimal(int[] prices) {
+
+        // Stores the minimum stock price encountered so far
+        int mini = Integer.MAX_VALUE;
+
+        // Stores the maximum profit achievable so far
+        int profit = 0;
+
+        // Traverse the array
+        for (int i = 0; i < prices.length; i++) {
+
+            // Calculate profit if we sell the stock today
+            // using the minimum price encountered so far
+            int cost = prices[i] - mini;
+
+            // Update maximum profit
+            profit = Math.max(cost, profit);
+
+            // Update minimum buying price
+            mini = Math.min(mini, prices[i]);
         }
+
         return profit;
     }
 }
