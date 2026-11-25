@@ -41,6 +41,7 @@ Constraints:
 
 1 <= nums.length <= 105
 -109 <= nums[i] <= 109 */
+import java.util.*;
 
 class Solution {
     public boolean containsDuplicate(int[] nums) {
